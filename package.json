@@ -4,7 +4,8 @@
     "description": "",
     "main": "./bin/index.js",
     "bin": {
-        "passgen": "./bin/index.js"
+        "passgen": "./bin/index.js",
+        "passget": "./bin/index.js"
     },
     "files": [
         "bin"
@@ -12,7 +13,6 @@
     "scripts": {
         "build": "tsc",
         "cover": "nyc --nycrc-path=.nycrc.js mocha test/*.test.ts",
-        "install": "npm i -g ./ && passgen",
         "lint": "eslint --config .eslintrc.js src/**/*.{js,ts} --fix",
         "prettier": "prettier --config .prettierrc.js --write ./**/*.{css,js,json,md,ts}",
         "start": "nodemon --watch src/**/*.ts --exec ts-node src/index.ts",
