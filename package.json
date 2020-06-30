@@ -1,10 +1,10 @@
 {
-    "name": "passgen",
+    "name": "passget",
     "version": "0.1.0",
     "description": "",
     "main": "./bin/index.js",
     "bin": {
-        "passgen": "./bin/index.js",
+        "passget": "./bin/index.js",
         "passget": "./bin/index.js"
     },
     "files": [
@@ -20,12 +20,12 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/johnyherangi/passgen.git"
+        "url": "git+https://github.com/johnyherangi/passget.git"
     },
     "bugs": {
-        "url": "https://github.com/johnyherangi/passgen/issues"
+        "url": "https://github.com/johnyherangi/passget/issues"
     },
-    "homepage": "https://github.com/johnyherangi/passgen#readme",
+    "homepage": "https://github.com/johnyherangi/passget#readme",
     "keywords": [],
     "author": "Johny Herangi",
     "license": "ISC",
