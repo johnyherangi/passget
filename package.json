@@ -1,0 +1,20 @@
+{
+    "name": "passgen",
+    "version": "0.1.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/johnyherangi/passgen.git"
+    },
+      "bugs": {
+        "url": "https://github.com/johnyherangi/passgen/issues"
+    },
+    "homepage": "https://github.com/johnyherangi/passgen#readme",
+    "keywords": [],
+    "author": "Johny Herangi",
+    "license": "ISC"
+}
