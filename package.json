@@ -2,19 +2,29 @@
     "name": "passgen",
     "version": "0.1.0",
     "description": "",
-    "main": "index.js",
+    "main": "./bin/index.js",
+    "bin": {
+        "passgen": "./bin/index.js"
+    },
     "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
+        "build": "tsc",
+        "start": "nodemon --watch src/**/*.ts --exec ts-node src/index.ts"
     },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/johnyherangi/passgen.git"
     },
-      "bugs": {
+    "bugs": {
         "url": "https://github.com/johnyherangi/passgen/issues"
     },
     "homepage": "https://github.com/johnyherangi/passgen#readme",
     "keywords": [],
     "author": "Johny Herangi",
-    "license": "ISC"
+    "license": "ISC",
+    "devDependencies": {
+        "@types/node": "^14.0.14",
+        "nodemon": "^2.0.4",
+        "ts-node": "^8.10.2",
+        "typescript": "^3.9.5"
+    }
 }
