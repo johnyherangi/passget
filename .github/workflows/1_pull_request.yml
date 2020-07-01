@@ -28,7 +28,7 @@ jobs:
             - uses: actions/setup-node@v1
               with:
                   node-version: 12
-            - uses: @johnyherangi/check-package-version@master
+            - uses: johnyherangi/check-package-version@master
     publish-npm-dryrun:
         runs-on: ubuntu-latest
         needs: [build, test]
