@@ -1,12 +1,12 @@
-name: push_master
+name: publish
 
 on:
     push:
-        branches: [master]
+        branches: master
 
 jobs:
     publish-npm:
-        runs-on: [ubuntu-latest]
+        runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
             - uses: actions/setup-node@v1
@@ -18,7 +18,7 @@ jobs:
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     publish-gpr:
-        runs-on: [ubuntu-latest]
+        runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
             - uses: actions/setup-node@v1
