@@ -21,6 +21,14 @@ jobs:
                   node-version: 12
             - run: npm ci
             - run: npm test
+    check-package-version:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v1
+              with:
+                  node-version: 12
+            - uses: @johnyherangi/check-package-version@master
     publish-npm-dryrun:
         runs-on: ubuntu-latest
         needs: [build, test]
