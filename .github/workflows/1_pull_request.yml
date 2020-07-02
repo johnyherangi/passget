@@ -6,6 +6,7 @@ jobs:
     test-some-expressions:
         runs-on: ubuntu-latest
         steps:
+            - uses: actions/checkout@v2
             - run: |
                   git show -s --format='%s'
                   echo $TAG_NAME
