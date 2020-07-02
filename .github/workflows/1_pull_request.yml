@@ -3,6 +3,17 @@ name: ci
 on: pull_request
 
 jobs:
+    test-some-expressions:
+        runs-on: ubuntu-latest
+        steps:
+            - run: |
+                  echo $LAST_COMMIT_MESSAGE
+                  echo $LAST_TAG
+                  echo $LAST_TAG_NAME
+              env:
+                  COMMIT_MESSAGES: ${{ git show -s --format='%s' }}
+                  TAG_NAME: ${{ github.base_ref }}
+                  LAST_TAG_NAME: ${{ github.base_ref }}
     build:
         runs-on: ubuntu-latest
         steps:
