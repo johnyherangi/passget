@@ -13,7 +13,7 @@ jobs:
             - uses: actions/setup-node@v1
             - name: Set env. variables
               run: |
-                  echo "::set-env name=TAG_NAME::$(node -e 'console.log(require(\"./package.json\").version)')"
+                  echo "::set-env name=TAG_NAME::$(node -e 'console.log(require("./package.json").version)')"
             - name: Print env. variables
               run: echo ${{ env.TAG_NAME }}
     build:
