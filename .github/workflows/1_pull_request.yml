@@ -7,11 +7,11 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - run: |
-                  echo $LAST_COMMIT_MESSAGE
-                  echo $LAST_TAG
+                  git show -s --format='%s'
+                  echo $TAG_NAME
                   echo $LAST_TAG_NAME
               env:
-                  COMMIT_MESSAGES: ${{ git show -s --format='%s' }}
+                  #COMMIT_MESSAGES: ${{ git show -s --format='%s' }}
                   TAG_NAME: ${{ github.base_ref }}
                   LAST_TAG_NAME: ${{ github.base_ref }}
     build:
