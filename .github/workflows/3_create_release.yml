@@ -9,14 +9,21 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
+              with:
+                  ref: master
+                  fetch-depth: 0
+            - name: Set env. variables
+              run: |
+                  echo "::set-env name=TAG_NAME::$(node -e 'console.log(require(''./package.json'').version)')"
+                  echo "::set-env name=RELEASE_NAME::$(git show -s --format='%s' origin/master)"
             - uses: actions/create-release@v1
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   COMMIT_MESSAGES: ${{ git show -s --format='%s' }}
                   TAG_NAME: ${{ github.ref }}
               with:
-                  tag_name: ${{ github.ref }}
-                  release_name: Release ${{ github.ref }}
+                  tag_name: ${{ env.TAG_NAME }}
+                  release_name: Release ${{ env.RELEASE_NAME }}
                   body: |
                       Changes in this Release
                       - First Change
