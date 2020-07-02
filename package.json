@@ -1,10 +1,9 @@
 {
     "name": "passget",
-    "version": "0.1.0",
+    "version": "0.0.1",
     "description": "",
     "main": "./bin/index.js",
     "bin": {
-        "passget": "./bin/index.js",
         "passget": "./bin/index.js"
     },
     "files": [
