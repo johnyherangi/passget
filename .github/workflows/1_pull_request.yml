@@ -8,12 +8,12 @@ jobs:
         steps:
             - uses: actions/checkout@v2
             - run: |
-                  git show -s --format='%s'
+                  git show -s --format='%s' origin/master
                   echo $TAG_NAME
                   echo $LAST_TAG_NAME
               env:
-                  #COMMIT_MESSAGES: ${{ git show -s --format='%s' }}
-                  TAG_NAME: ${{ github.base_ref }}
+                  COMMIT_MESSAGES: ${{ git show -s --format='%s' origin/master' }}
+                  TAG_NAME: ${{ github.ref }}
                   LAST_TAG_NAME: ${{ github.base_ref }}
     build:
         runs-on: ubuntu-latest
