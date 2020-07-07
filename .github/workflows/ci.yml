@@ -3,7 +3,7 @@ name: ci
 on: pull_request
 
 jobs:
-    test-some-expressions:
+    create-release-draft:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
@@ -11,14 +11,24 @@ jobs:
                   ref: master
                   fetch-depth: 0
             - uses: actions/setup-node@v1
-              with:
-                  node-version: 12
-            - run: |
+            - name: Set environment variables
+              run: |
+                  echo "::set-env name=TAG_NAME::$(node -e 'console.log(require("./package.json").version)')"
+                  echo "::set-env name=RELEASE_NAME::$(git show -s --format='%s' origin/master)"
+
                   LAST_TAG=$(git describe --abbrev=0 --tags origin/master^)
-                  git log --format='%s' $LAST_TAG..HEAD >> release_notes.txt
-                  sed -i -e 's/^/- /' release_notes.txt
-                  echo "::set-env name=RELEASE_NOTES::$(echo "Changes in this release:" ; cat release_notes.txt)"
-                  echo $RELEASE_NOTES
+                  echo "Changes in this release:" > release_notes.txt
+                  echo "$(git log --format='%s' $LAST_TAG..HEAD)" >> release_notes.txt
+                  sed -i -e '2,$ s/^/- /' release_notes.txt
+                  echo "::set-env name=RELEASE_NOTES::"$(cat release_notes.txt)""
+            - uses: actions/create-release@v1
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              with:
+                  tag_name: ${{ env.TAG_NAME }}
+                  release_name: ${{ env.RELEASE_NAME }}
+                  body: ${{ env.RELEASE_NOTES }}
+                  draft: true
 
     build:
         runs-on: ubuntu-latest
