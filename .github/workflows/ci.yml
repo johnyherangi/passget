@@ -3,41 +3,6 @@ name: ci
 on: pull_request
 
 jobs:
-    create-release-draft:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v2
-              with:
-                  ref: master
-                  fetch-depth: 0
-            - uses: actions/setup-node@v1
-            - name: Generate release tag
-              id: release_tag
-              run: echo "::set-output name=value::$(node -e 'console.log(require("./package.json").version)')"
-            - name: Generate release name
-              id: release_name
-              run: echo "::set-output name=value::$(git show -s --format='%s' origin/master)"
-            - name: Generate release notes
-              id: release_notes
-              run: |
-                  echo "Changes in this release:" > release_notes.txt
-                  last_tag=$(git describe --abbrev=0 --tags origin/master^)
-                  echo "$(git log --format='%s' $last_tag..HEAD)" >> release_notes.txt
-                  sed -i -e '2,$ s/^/- /' release_notes.txt
-                  release_notes=$(cat release_notes.txt)
-                  release_notes="${release_notes//$'%'/%25}"
-                  release_notes="${release_notes//$'\n'/%0A}"
-                  release_notes="${release_notes//$'\r'/%0D}"
-                  echo "::set-output name=value::$release_notes"
-            - uses: actions/create-release@v1
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              with:
-                  tag_name: ${{ steps.release_tag.outputs.value }}
-                  release_name: ${{ steps.release_name.outputs.value }}
-                  body: ${{ steps.release_notes.outputs.value }}
-                  draft: true
-
     build:
         runs-on: ubuntu-latest
         steps:
