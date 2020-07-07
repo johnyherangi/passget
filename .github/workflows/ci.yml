@@ -11,23 +11,31 @@ jobs:
                   ref: master
                   fetch-depth: 0
             - uses: actions/setup-node@v1
-            - name: Set environment variables
+            - name: Generate release tag
+              id: release_tag
+              run: echo "::set-output name=value::$(node -e 'console.log(require("./package.json").version)')"
+            - name: Generate release name
+              id: release_name
+              run: echo "::set-output name=value::$(git show -s --format='%s' origin/master)"
+            - name: Generate release notes
+              id: release_notes
               run: |
-                  echo "::set-env name=TAG_NAME::$(node -e 'console.log(require("./package.json").version)')"
-                  echo "::set-env name=RELEASE_NAME::$(git show -s --format='%s' origin/master)"
-
-                  LAST_TAG=$(git describe --abbrev=0 --tags origin/master^)
                   echo "Changes in this release:" > release_notes.txt
-                  echo "$(git log --format='%s' $LAST_TAG..HEAD)" >> release_notes.txt
+                  last_tag=$(git describe --abbrev=0 --tags origin/master^)
+                  echo "$(git log --format='%s' $last_tag..HEAD)" >> release_notes.txt
                   sed -i -e '2,$ s/^/- /' release_notes.txt
-                  echo "::set-env name=RELEASE_NOTES::"$(cat release_notes.txt)""
+                  release_notes=$(cat release_notes.txt)
+                  release_notes="${release_notes//$'%'/%25}"
+                  release_notes="${release_notes//$'\n'/%0A}"
+                  release_notes="${release_notes//$'\r'/%0D}"
+                  echo "::set-output name=value::$release_notes"
             - uses: actions/create-release@v1
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
-                  tag_name: ${{ env.TAG_NAME }}
-                  release_name: ${{ env.RELEASE_NAME }}
-                  body: ${{ env.RELEASE_NOTES }}
+                  tag_name: ${{ steps.tag.outputs.value }}
+                  release_name: ${{ steps.release_name.outputs.value }}
+                  body: ${{ steps.release_notes.outputs.value }}
                   draft: true
 
     build:
