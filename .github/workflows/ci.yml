@@ -33,7 +33,7 @@ jobs:
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
-                  tag_name: ${{ steps.tag.outputs.value }}
+                  tag_name: ${{ steps.release_tag.outputs.value }}
                   release_name: ${{ steps.release_name.outputs.value }}
                   body: ${{ steps.release_notes.outputs.value }}
                   draft: true
