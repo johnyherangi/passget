@@ -10,7 +10,7 @@ jobs:
             - uses: actions/setup-node@v1
               with:
                   node-version: 12
-            - uses: johnyherangi/release-notes
+            - uses: johnyherangi/release-notes@master
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     build:
