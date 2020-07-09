@@ -12,7 +12,14 @@ jobs:
                   head-ref: ${{ github.head_ref }}
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            - run: echo ${{ steps.release_notes.outputs.release-notes }}
+            - uses: actions/create-release@v1
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              with:
+                  tag_name: "0.0.0"
+                  release_name: Test Release
+                  body: ${{ steps.release_notes.outputs.release-notes }}
+                  draft: true
     build:
         runs-on: ubuntu-latest
         steps:
