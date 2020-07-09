@@ -8,7 +8,7 @@ jobs:
         steps:
             - uses: johnyherangi/release-notes@master
               with:
-                  tag: ${{ github.head_ref }}
+                  head-ref: ${{ github.head_ref }}
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     build:
