@@ -7,10 +7,12 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: johnyherangi/release-notes@master
+              id: release_notes
               with:
                   head-ref: ${{ github.head_ref }}
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            - run: echo ${{ steps.release_notes.outputs.release_notes }}
     build:
         runs-on: ubuntu-latest
         steps:
