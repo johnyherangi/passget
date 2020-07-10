@@ -6,7 +6,6 @@ on:
 
 jobs:
     publish-npm:
-        if: github.event.base_ref == 'refs/heads/master'
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
@@ -20,7 +19,6 @@ jobs:
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     publish-gpr:
-        if: github.event.base_ref == 'refs/heads/master'
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
