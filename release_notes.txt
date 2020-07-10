@@ -1,9 +1,0 @@
-Changes in this release:
-- WIP
-- test generating release notes
-- Merge branch 'feature/only_publish_src_path_changes' of https://github.com/johnyherangi/passgen into feature/only_publish_src_path_changes
-- publish dry run when package files change
-- Merge branch 'master' into feature/only_publish_src_path_changes
-- publish dryrun only on src change
-- Bump patch version (#6)
-- Fix create-release workflow (#5)
