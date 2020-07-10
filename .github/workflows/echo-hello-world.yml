@@ -1,0 +1,11 @@
+name: echo-hello-world
+
+on:
+    release:
+        types: created
+
+jobs:
+    echo-hello-world:
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "Hello, World!"
