@@ -10,7 +10,8 @@ jobs:
               uses: johnyherangi/release-notes@master
               id: release_notes
               with:
-                  head-ref: ${{ github.head_ref }}
+                  base-ref: "0.0.4"
+                  head-ref: "0.0.7"
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             - uses: actions/create-release@v1
