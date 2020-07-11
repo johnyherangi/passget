@@ -30,6 +30,8 @@ jobs:
                   node-version: 12
             - run: npm ci
             - run: npm run cover && npx codecov
+              env:
+                  CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
     publish-dryrun-npm:
         runs-on: ubuntu-latest
         needs: [build, test]
