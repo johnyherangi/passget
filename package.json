@@ -11,11 +11,10 @@
     ],
     "scripts": {
         "build": "tsc",
-        "cover": "nyc --nycrc-path=.nycrc.js mocha test/*.test.ts",
         "lint": "eslint --config .eslintrc.js src/**/*.{js,ts} --fix",
         "prettier": "prettier --config .prettierrc.js --write ./**/*.{css,js,json,md,ts}",
         "start": "nodemon --watch src/**/*.ts --exec ts-node src/index.ts",
-        "test": "mocha test/*.test.ts"
+        "test": "nyc --nycrc-path=.nycrc.js mocha test/*.test.ts"
     },
     "repository": {
         "type": "git",
