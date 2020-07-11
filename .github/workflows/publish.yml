@@ -1,12 +1,13 @@
 name: publish
 
-on:
-    release:
-        types: released
+on: release
 
 jobs:
+    debug-action:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: hmarr/debug-action@v1.0.0
     publish-npm:
-        if: github.event.base_ref == 'refs/heads/master'
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
@@ -16,11 +17,10 @@ jobs:
                   registry-url: "https://registry.npmjs.org"
             - run: npm ci
             - run: npm run build
-            - run: npm publish
+            - run: npm publish --dry-run
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     publish-gpr:
-        if: github.event.base_ref == 'refs/heads/master'
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
@@ -32,6 +32,6 @@ jobs:
             - run: npm ci
             - run: echo "registry=https://npm.pkg.github.com/@johnyherangi" >> .npmrc
             - run: npm run build
-            - run: npm publish
+            - run: npm publish --dry-run
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
