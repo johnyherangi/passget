@@ -20,11 +20,7 @@ jobs:
             - name: Generate tag name
               id: tag_name
               run: echo "::set-output name=value::$(node -e 'console.log(require("./package.json").version)')"
-            - name: Generate release name
-              id: release_name
-              run: echo "::set-output name=value::$(git show -s --format='%s' origin/master)"
-            - name: Generate release notes
-              uses: johnyherangi/release-notes@master
+            - uses: johnyherangi/release-notes@master
               id: release_notes
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,9 +1,0 @@
-name: echo-hello-world
-
-on: release
-
-jobs:
-    echo-hello-world:
-        runs-on: ubuntu-latest
-        steps:
-            - run: echo "Hello, World!"
