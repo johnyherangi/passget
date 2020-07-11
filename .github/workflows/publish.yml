@@ -1,17 +1,16 @@
 name: publish
 
-# TODO: Trigger on release events. Need to figure out
-# why actions/create-release is not sending release event
-# on:
-#     push:
-#         branches: master
-#         paths:
-#             - "src/**"
-#             - "package.json"
-#             - "package-lock.json"
 on:
+    # TODO: Trigger on release events. Need to figure out
+    # why actions/create-release is not sending release event
     release:
         types: [published]
+#    push:
+#        branches: master
+#        paths:
+#            - "src/**"
+#            - "package.json"
+#            - "package-lock.json"
 
 jobs:
     publish-npm:

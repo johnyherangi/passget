@@ -3,26 +3,6 @@ name: ci
 on: pull_request
 
 jobs:
-    create-release-draft:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v2
-            - name: Generate tag name
-              id: tag_name
-              run: echo "::set-output name=value::$(node -e 'console.log(require("./package.json").version)')"
-            - name: Generate release notes
-              uses: johnyherangi/release-notes@master
-              id: release_notes
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            - uses: actions/create-release@v1
-              env:
-                  GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
-              with:
-                  tag_name: ${{ steps.tag_name.outputs.value }}
-                  release_name: ${{ steps.release_notes.outputs.release_name }}
-                  body: ${{ steps.release_notes.outputs.release_notes }}
-                  draft: true
     build:
         runs-on: ubuntu-latest
         steps:
