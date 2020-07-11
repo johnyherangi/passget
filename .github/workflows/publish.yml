@@ -3,7 +3,7 @@ name: publish
 on: release
 
 jobs:
-    print-release-type:
+    print-github-event:
         runs-on: ubuntu-latest
         steps:
             - run: echo "${{ github.event }}""
