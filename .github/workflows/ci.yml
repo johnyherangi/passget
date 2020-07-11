@@ -16,7 +16,7 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             - uses: actions/create-release@v1
               env:
-                  GITHUB_TOKEN: ${{ secrets.CREATE_RELEASE_TOKEN }}
+                  GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
               with:
                   tag_name: "0.0.0"
                   release_name: Test Release
