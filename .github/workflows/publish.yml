@@ -1,10 +1,12 @@
 name: publish
 
-on:
-    release:
-        types: released
+on: release
 
 jobs:
+    print-release-type:
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "${{ github.event }}""
     publish-npm:
         runs-on: ubuntu-latest
         steps:
