@@ -6,7 +6,7 @@ jobs:
     print-github-event:
         runs-on: ubuntu-latest
         steps:
-            - run: echo "${{ github.event_name }}"
+            - run: echo "${{ github.event.payload }}"
     build:
         runs-on: ubuntu-latest
         steps:
