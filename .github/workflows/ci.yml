@@ -13,8 +13,6 @@ jobs:
             - name: Generate release notes
               uses: johnyherangi/release-notes@master
               id: release_notes
-              with:
-                  base-ref: "0.0.5"
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             - uses: actions/create-release@v1
