@@ -1,12 +1,19 @@
 name: publish
 
-on: release
+# TODO: Trigger on release events. Need to figure out
+# why actions/create-release is not sending release event
+# on:
+#     push:
+#         branches: master
+#         paths:
+#             - "src/**"
+#             - "package.json"
+#             - "package-lock.json"
+on:
+    release:
+        types: [published]
 
 jobs:
-    debug-action:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: hmarr/debug-action@v1.0.0
     publish-npm:
         runs-on: ubuntu-latest
         steps:
@@ -17,7 +24,7 @@ jobs:
                   registry-url: "https://registry.npmjs.org"
             - run: npm ci
             - run: npm run build
-            - run: npm publish --dry-run
+            - run: npm publish
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     publish-gpr:
@@ -32,6 +39,6 @@ jobs:
             - run: npm ci
             - run: echo "registry=https://npm.pkg.github.com/@johnyherangi" >> .npmrc
             - run: npm run build
-            - run: npm publish --dry-run
+            - run: npm publish
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
