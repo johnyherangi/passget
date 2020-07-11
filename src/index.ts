@@ -1,5 +1,1 @@
-#!/usr/bin/env node
-
-import password from "./password"
-
-console.log(password())
+export * as password from "./password"
