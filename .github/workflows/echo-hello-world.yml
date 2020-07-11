@@ -2,7 +2,7 @@ name: echo-hello-world
 
 on:
     release:
-        types: [created]
+        types: [published]
 
 jobs:
     echo-hello-world:
