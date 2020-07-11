@@ -3,10 +3,10 @@ name: publish
 on: release
 
 jobs:
-    print-github-event:
+    debug-action:
         runs-on: ubuntu-latest
         steps:
-            - run: echo "${{ github.event_name }}""
+            - uses: hmarr/debug-action@v1.0.0
     publish-npm:
         runs-on: ubuntu-latest
         steps:

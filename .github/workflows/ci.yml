@@ -3,10 +3,6 @@ name: ci
 on: pull_request
 
 jobs:
-    print-github-event:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: hmarr/debug-action@v1.0.0
     build:
         runs-on: ubuntu-latest
         steps:
