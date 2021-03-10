@@ -28,6 +28,7 @@ jobs:
                   registry-url: https://npm.pkg.github.com
                   scope: "@johnyherangi"
             - run: npm ci
+            - run: echo "registry=https://npm.pkg.github.com" >> .npmrc
             - run: npm run build
             - run: npm publish
               env:
