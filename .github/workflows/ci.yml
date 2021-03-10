@@ -65,6 +65,8 @@ jobs:
             - run: cat .npmrc
             - run: echo $HOME
             - run: cat /home/runner/work/_temp/.npmrc
+            - run: echo $NPM_CONFIG_USERCONFIG
+            - run: echo $NPM_CONFIG_GLOBALCONFIG
             - run: npm publish --verbose
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
