@@ -9,7 +9,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
-            - uses: actions/setup-node@v1
+            - uses: actions/setup-node@v2
               with:
                   node-version: 12
                   registry-url: "https://registry.npmjs.org"
@@ -22,13 +22,11 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
-            - uses: actions/setup-node@v1
+            - uses: actions/setup-node@v2
               with:
                   node-version: 12
-                  registry-url: https://npm.pkg.github.com
-                  scope: "@johnyherangi"
+                  registry-url: "https://npm.pkg.github.com"
             - run: npm ci
-            - run: echo "registry=https://npm.pkg.github.com/@johnyherangi" >> .npmrc
             - run: npm run build
             - run: npm publish
               env:
