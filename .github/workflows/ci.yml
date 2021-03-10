@@ -63,6 +63,6 @@ jobs:
             - run: npm ci
             - run: npm run build
             - run: echo "registry=https://npm.pkg.github.com/@johnyherangi" >> .npmrc
-            - run: npm publish --tag prerelease
+            - run: npm publish
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
