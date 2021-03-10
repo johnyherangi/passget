@@ -64,6 +64,7 @@ jobs:
             - run: ls
             - run: cat .npmrc
             - run: echo $HOME
+            - run: cat /home/runner/work/_temp/.npmrc
             - run: npm publish --verbose
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
