@@ -62,7 +62,6 @@ jobs:
                   scope: "@johnyherangi"
             - run: npm ci
             - run: npm run build
-            - run: npx semver --increment prerelease
             - run: echo "registry=https://npm.pkg.github.com/@johnyherangi" >> .npmrc
             - run: npm publish --tag prerelease
               env:
