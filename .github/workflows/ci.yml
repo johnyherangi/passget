@@ -60,6 +60,7 @@ jobs:
                   node-version: 12
                   registry-url: "https://npm.pkg.github.com"
             - run: cat $NPM_CONFIG_USERCONFIG >> .npmrc
+            - run: cat .npmrc
             - run: npm ci
             - run: npm run build
             - run: npm publish --verbose
