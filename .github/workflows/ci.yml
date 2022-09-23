@@ -66,3 +66,14 @@ jobs:
             - run: npm publish --dry-run
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    create-release-notes-dry-run:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/setup-node@v1
+            - name: Generate tag name
+              id: tag_name
+              run: echo "::set-output name=value::$(node -e 'console.log(require("./package.json").version)')"
+            - uses: johnyherangi/create-release-notes@v1
+              id: release_notes
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
