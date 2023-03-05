@@ -16,10 +16,10 @@ jobs:
               with:
                   ref: master
                   fetch-depth: 0
-            - uses: actions/setup-node@v1
+            - uses: actions/setup-node@v2
             - name: Generate tag name
               id: tag_name
-              run: echo "::set-output name=value::$(node -e 'console.log(require("./package.json").version)')"
+              run: echo "name=$(node -e 'console.log(require("./package.json").version)')" >> $GITHUB_OUTPUT
             - uses: johnyherangi/create-release-notes@main
               id: release_notes
               env:
